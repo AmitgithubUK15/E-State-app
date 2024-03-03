@@ -19,13 +19,30 @@ mongoose.connect(process.env.MONGO)
 })
 .catch(err => console.log(err));
 
+app.listen(3005,()=>{
+    console.log('server is runing on port 3005!!')
+})
+
+
+
 // middlewares
 
 app.use(express.json());
 
+
+
+
+// route handling
 app.use('/api/user',userRouter);
 app.use("/api/auth",authRouter);
 
-app.listen(3005,()=>{
-    console.log('server is runing on port 3005!!')
-})
+// error handling middleware
+app.use((err,req,res,next)=>{
+    const statusCode = err.statusCode || 500;
+    const message= err.message || "Internal server error";
+    return res.status(statusCode).json({
+      success:false,
+      statusCode,
+      message,
+    });
+  });
