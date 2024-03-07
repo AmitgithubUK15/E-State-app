@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 // routes import 
 import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
+import listingRouter from './routes/listing.route.js'
 
 import dotenv from 'dotenv';
 
@@ -41,6 +42,7 @@ app.use(cookieParser());
 // route handling
 app.use('/api/user',userRouter);
 app.use("/api/auth",authRouter);
+app.use("/api/listing",listingRouter);
 
 // error handling middleware
 app.use((err,req,res,next)=>{
