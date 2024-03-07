@@ -2,8 +2,9 @@ import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
 import bcrypt from 'bcrypt';
 
-export const test = (req,res)=>{
-    return res.json({msg:"api route work"});
+export const test = async (req,res)=>{
+    let users = await User.find({})
+    return res.json(users);
 }
 
 
@@ -26,6 +27,18 @@ export const updateUser = async (req,res,next)=>{
         const {password, ...rest }  = updateUser._doc
 
         res.status(200).json(rest);
+    } catch (error) {
+        next(error)
+    }
+}
+
+export const deleteUser = async (req,res,next)=>{
+    if(req.user.id  !== req.params.id) return next(errorHandler(401,"You can only delete you own account"));
+
+    try {
+        await User.findByIdAndDelete(req.params.id);
+        res.clearCookie('access_token');
+        res.status(200).json('User has been deleted');
     } catch (error) {
         next(error)
     }
