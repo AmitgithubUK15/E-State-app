@@ -86,7 +86,9 @@ if(e.target.type === 'number' || e.target.type === 'text' || e.target.type === '
   })
 }
 }
-  async function storeImage(file){
+
+
+async function storeImage(file){
     return new Promise((resolse,reject)=>{
       const storage = getStorage(app);
       const fileName = new Date().getTime() + file.name;
@@ -107,7 +109,7 @@ if(e.target.type === 'number' || e.target.type === 'text' || e.target.type === '
         }
       )
     })
-  }
+}
 
   async function handleSubmit(e){
     e.preventDefault();

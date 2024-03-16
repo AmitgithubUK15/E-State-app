@@ -39,6 +39,7 @@ export default function SignUp() {
       navigate('/');
     }
     catch (error) {
+
       dispatch(signInFailure(error.message));
     }
   };
