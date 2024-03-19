@@ -258,7 +258,10 @@ export default function Profile() {
 
           <div className='flex flex-col item-center' >
             <button onClick={()=>handleListingDelete(listing._id)} className='text-red-700'>Delete</button>
-            <button className='text-green-700'>Add</button>
+            
+            <Link to={`/update-listing/${encodeURIComponent(listing._id)}`}>
+            <button className='text-green-700'>Edit</button>
+            </Link>
           </div>
 
           </div>
