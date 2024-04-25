@@ -179,7 +179,7 @@ async function storeImage(file){
         <textarea type="text" placeholder='Description'
         className='border p-3 rounded-lg'
         id='description'
-        maxLength='62'
+        maxLength='500'
         minLength='10'
         required
         onChange={handleChange}
@@ -309,7 +309,7 @@ async function storeImage(file){
       
       <button disabled={uploading || loading } 
       className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
-      >{uploading ? "Creating...":"Create Listing"}</button>
+      >{uploading ? "Updateing...":"Update Listing"}</button>
     
       {error && <p className="text-red-500 text-sm ">{error}</p>}
       
