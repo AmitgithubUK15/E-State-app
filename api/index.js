@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import cookieParser from "cookie-parser";
+import path from 'path';
 
 // routes import 
 import userRouter from "./routes/user.route.js";
@@ -16,6 +17,8 @@ dotenv.config();
 
 const app = express();
 
+
+
 // connect mongoose
 mongoose.connect(process.env.MONGO)
 .then(()=>{
@@ -28,6 +31,8 @@ app.listen(3005,()=>{
   console.log('server is runing on port 3005!!')
 })
 
+
+const __dirname = path.resolve();
 
 
 // middlewares
@@ -43,6 +48,14 @@ app.use(cookieParser());
 app.use('/api/user',userRouter);
 app.use("/api/auth",authRouter);
 app.use("/api/listing",listingRouter);
+
+
+app.use(express.static(path.join(__dirname,'/client/dist')));
+
+app.get('*',(req,res)=>{
+  res.sendFile(path.join(__dirname,'client','dist','index.html'));
+})
+
 
 // error handling middleware
 app.use((err,req,res,next)=>{
