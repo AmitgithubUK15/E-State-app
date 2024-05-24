@@ -48,13 +48,13 @@ export default function Headers() {
         </form>
         <ul className='flex gap-4 '>
             <Link to="/">
-            <li className='hidden sm:inline text-slate-700 hover:underline'>
+            <li className='xl:block md:block sm:block  text-slate-700 text-sm hover:underline'>
               Home
               </li>
             </Link>
 
             <Link to='/about'>
-            <li className='hidden sm:inline text-slate-700 hover:underline'>
+            <li className='xl:block md:block sm:block  text-slate-700 text-sm hover:underline'>
               About
               </li>
             </Link>
@@ -64,8 +64,8 @@ export default function Headers() {
                <img className='rounded-full h-7 w-7 object-cover ' src={currentUser.avatar} alt='profile' />
               ):
             (
-              <li className='hidden sm:inline text-slate-700 hover:underline'>
-              Sign in
+              <li className='xl:block md:block sm:block  text-slate-700 text-sm hover:underline'>
+              Signin
               </li>
             )
               }

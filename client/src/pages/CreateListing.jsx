@@ -11,7 +11,7 @@ export default function CreateListing() {
     name:'',
     description:'',
     address:'',
-    type:'rend',
+    type:'rent',
     badrooms:1,
     bathrooms:1,
     regularPrice:50,
@@ -43,7 +43,7 @@ export default function CreateListing() {
       setloading(false);
       
     })
-    .catch((err)=>{
+    .catch(()=>{
       setImageUploaderror('Image upload failed (2 mb max per image)')
       setloading(false)
     })
@@ -230,7 +230,7 @@ async function storeImage(file){
           </div>
 
           <div className='flex items-center gap-2 '>
-            <input type="number" id='regularPrice' min='50' max='10000' required
+            <input type="number" id='regularPrice' min='50' max='1000000' required
             className='p-3 border border-gray-300 rounded-lg'
             onChange={handleChange}
             value={formData.regularPrice}
@@ -247,7 +247,7 @@ async function storeImage(file){
            {formData.offer && 
            (
            <div className='flex items-center gap-2 '>
-           <input type="number" id='discountPrice' min='0' max='1000' required
+           <input type="number" id='discountPrice' min='0' max='100000' required
            className='p-3 border border-gray-300 rounded-lg'
            onChange={handleChange}
            value={formData.discountPrice}

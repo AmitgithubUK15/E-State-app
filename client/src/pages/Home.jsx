@@ -12,7 +12,8 @@ export default function Home() {
   const [saleListings, setSaleListings] = useState([]);
   const [rentListings, setRentListings] = useState([]);
   SwiperCore.use([Navigation]);
-  console.log(offerListings);
+  console.log("offer",offerListings);
+  console.log("rent",rentListings);
   useEffect(() => {
     const fetchOfferListings = async () => {
       try {
@@ -41,7 +42,7 @@ export default function Home() {
         const data = await res.json();
         setSaleListings(data);
       } catch (error) {
-        log(error);
+        console.log(error);
       }
     };
     fetchOfferListings();
@@ -66,7 +67,7 @@ export default function Home() {
           to={'/search'}
           className='text-xs sm:text-sm text-blue-800 font-bold hover:underline'
         >
-          Let's get started...
+          Lets get started...
         </Link>
       </div>
 
@@ -99,7 +100,7 @@ export default function Home() {
             </div>
             <div className='flex flex-wrap gap-4'>
               {offerListings.map((listing) => (
-                <ListingItem listing={listing} key={listing._id} />
+                <ListingItem list={listing} key={listing._id} />
               ))}
             </div>
           </div>
@@ -112,7 +113,7 @@ export default function Home() {
             </div>
             <div className='flex flex-wrap gap-4'>
               {rentListings.map((listing) => (
-                <ListingItem listing={listing} key={listing._id} />
+                <ListingItem list={listing} key={listing._id} />
               ))}
             </div>
           </div>
