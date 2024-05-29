@@ -19,7 +19,7 @@ export default function Profile() {
   
   
 
-  console.log(formData);
+
   // firebase storage
   // allow read;
   // allow write : if
