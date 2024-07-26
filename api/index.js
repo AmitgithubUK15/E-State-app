@@ -17,7 +17,7 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors({origin: process.env.CLIENT_URL,methods: ["GET", "POST","DELETE"], credentials: true})) 
+app.use(cors({origin: process.env.CLIENT_URL,methods: ["GET", "POST","DELETE","PUT"], credentials: true})) 
 
 // connect mongoose
 mongoose.connect(process.env.MONGO)
