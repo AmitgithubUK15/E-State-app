@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import ListingItem from '../components/ListingItem';
+import CustomFetch from '../utils/CustomFetch';
 
 export default function Search() {
     const [sidebardata,setSidebardata] = useState({
@@ -53,7 +54,7 @@ export default function Search() {
       setLoading(true);
       setShowMore(false);
       const searchQuery = urlParams.toString();
-      const res = await fetch(`/api/listing/get?${searchQuery}`);
+      const res = await CustomFetch(`${import.meta.env.VITE_SERVER_URL}/api/listing/get?${searchQuery}`);
       const data = await res.json();
 
       if(data.length >8){
@@ -115,7 +116,7 @@ export default function Search() {
       urlParams.set('startIndex',startIndex);
       const searchQuery = urlParams.toString();
 
-      const res = await fetch(`/api/listing/get?${searchQuery}`)
+      const res = await CustomFetch(`${import.meta.env.VITE_SERVER_URL}/api/listing/get?${searchQuery}`)
       const data = await res.json();
 
       if(data.length <9){

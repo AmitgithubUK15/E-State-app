@@ -7,6 +7,7 @@ import 'swiper/css/bundle';
 import { FaBath, FaBed, FaChair, FaMapMarkerAlt, FaParking, FaShare } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import Contact from '../components/Contact';
+import CustomFetch from '../utils/CustomFetch';
 
 export default function Listing() {
     SwiperCore.use([Navigation]);
@@ -23,7 +24,7 @@ export default function Listing() {
       const fetchListing = async ()=>{
         try {
             setLoading(true);
-            const res = await fetch(`/api/listing/get/${params.listingId}`)
+            const res = await CustomFetch(`${import.meta.env.VITE_SERVER_URL}/api/listing/get/${params.listingId}`)
     
             const data = await res.json();
             if(data.success ===false){

@@ -1,6 +1,7 @@
 import  { useEffect, useState } from 'react'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import CustomFetch from '../utils/CustomFetch';
 
 export default function Contact({listing}) {
   const [landlord,setLandlord] =useState(null);
@@ -12,7 +13,7 @@ export default function Contact({listing}) {
   useEffect(()=>{
     const fetchLandlord = async ()=>{
       try {
-        const res = await fetch(`/api/user/${listing.userRef}`);
+        const res = await CustomFetch(`${import.meta.env.VITE_SERVER_URL}/api/user/${listing.userRef}`);
         const data = await res.json();
         setLandlord(data);
       } catch (error) {

@@ -3,6 +3,7 @@ import { app } from "../firebase";
 import {getDownloadURL, getStorage, ref, uploadBytesResumable} from 'firebase/storage';
 import {useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom'
+import CustomFetch from "../utils/CustomFetch";
 
 export default function CreateListing() {
   const [files,setfiles] = useState([]);
@@ -119,7 +120,7 @@ async function storeImage(file){
       setUploading(true);
       setError(false);
 
-      const res = await fetch('/api/listing/create',{
+      const res = await CustomFetch(`${import.meta.env.VITE_SERVER_URL}/api/listing/create`,{
         method:"POST",
         headers:{
           'Content-Type':'application/json',

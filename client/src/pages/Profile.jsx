@@ -4,6 +4,7 @@ import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/
 import { app } from '../firebase';
 import {updateUserStart,updateUserSuccess,updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSuccess, signoutUserStart, signoutUserFailure, signoutUserSuccess} from '../redux/user/userSlice'
 import {Link} from 'react-router-dom'
+import CustomFetch from '../utils/CustomFetch';
 
 export default function Profile() {
   const { currentUser,loading,error } = useSelector(state => state.user);
@@ -66,7 +67,7 @@ export default function Profile() {
     try {
       dispatch(updateUserStart());
       
-      const res = await fetch(`/api/user/update/${currentUser._id}`,{
+      const res = await CustomFetch(`${import.meta.env.VITE_SERVER_URL}/api/user/update/${currentUser._id}`,{
         method:"POST",
         headers:{
           'Content-Type':'application/json'
@@ -92,7 +93,7 @@ export default function Profile() {
     try {
        dispatch(deleteUserStart());
 
-       const res = await fetch(`/api/user/delete/${currentUser._id}`,{
+       const res = await CustomFetch(`${import.meta.env.VITE_SERVER_URL}/api/user/delete/${currentUser._id}`,{
         method:"DELETE",
        });
 
@@ -113,7 +114,7 @@ export default function Profile() {
   async function handleSignout(){
     try {
       dispatch(signoutUserStart())
-      const res = await fetch("/api/auth/signout")
+      const res = await CustomFetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/signout`)
       const data = await res.json();
 
       if(data.success === false){
@@ -130,7 +131,7 @@ export default function Profile() {
 
   async function handleshowListing(){
    try {
-     const res = await fetch(`/api/user/listing/${currentUser._id}`)
+     const res = await CustomFetch(`${import.meta.env.VITE_SERVER_URL}/api/user/listing/${currentUser._id}`)
      const data = await res.json();
      if(data.success === false){
       setShowListingError(true);
@@ -145,7 +146,7 @@ export default function Profile() {
 
   async function handleListingDelete(listingId){
     try {
-      const res = await fetch(`/api/listing/delete/${listingId}`,{
+      const res = await CustomFetch(`${import.meta.env.VITE_SERVER_URL}/api/listing/delete/${listingId}`,{
         method:"DELETE",
       });
 

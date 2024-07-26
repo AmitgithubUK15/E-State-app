@@ -32,7 +32,7 @@ export default function UpdateListing() {
   useEffect(()=>{
    const fetchlisting = async ()=>{
     const listingId= params.listingId;
-    const res = await fetch(`/api/listing/get/${listingId}`);
+    const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/listing/get/${listingId}`);
     const data =await res.json();
     if(data.success ===false){
       console.log(data.message);
@@ -135,7 +135,7 @@ async function storeImage(file){
       setUploading(true);
       setError(false);
 
-      const res = await fetch(`/api/listing/update/${params.listingId}`,{
+      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/listing/update/${params.listingId}`,{
         method:"POST",
         headers:{
           'Content-Type':'application/json',
