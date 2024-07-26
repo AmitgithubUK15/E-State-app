@@ -17,7 +17,7 @@ dotenv.config();
 
 const app = express();
 
-
+app.use(cors({origin: process.env.CLIENT_URL,methods: ["GET", "POST","DELETE"], credentials: true})) 
 
 // connect mongoose
 mongoose.connect(process.env.MONGO)
@@ -35,7 +35,7 @@ app.listen(3005,()=>{
 
 // middlewares
 app.use(express.urlencoded({extended:false}));
-app.use(cors({origin:process.env.CLIENT_URL,methods: ["GET", "POST","DELETE"], credentials: true}))
+
 app.use(express.json());
 app.use(cookieParser());
 
